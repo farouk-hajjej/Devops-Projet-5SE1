@@ -15,15 +15,15 @@ stages {
                     echo 'Build App'
 
                 }
-                }
+         }
 
      stage('Test') {
                     steps {
                         echo 'Test App'
 
                     }
-        }
-        }
+      }
+
 }
 
 
