@@ -10,14 +10,14 @@ stages {
           //  credenttialsId : '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' ;
         }
         }
-        stage('Build') {
+        stage('Maven build') {
                 steps {
                     echo 'Build App'
 
                 }
          }
 
-     stage('Test') {
+     stage('Maven test') {
                     steps {
                         echo 'Test App'
 
