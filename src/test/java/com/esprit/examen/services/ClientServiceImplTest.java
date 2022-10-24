@@ -19,8 +19,8 @@ import com.esprit.examen.entities.Profession;
 
 import lombok.extern.slf4j.Slf4j;
 
-
-@RunWith(SpringRunner.class)
+@extendWith(SpringExtension.class)Junit5
+@RunWith(SpringRunner.class)Junit4
 @SpringBootTest
 @Slf4j
 public class ClientServiceImplTest {
