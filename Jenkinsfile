@@ -7,7 +7,7 @@ stages {
             echo 'Pulling .....';
             git branch : 'farouk-back',
             url : 'https://github.com/farouk-hajjej/Devops-Projet-5SE1.git'
-          //  credenttialsId : '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' ;
+           credentialsId : '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' ;
         }
         }
         stage('Maven build') {
