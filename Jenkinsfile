@@ -6,7 +6,7 @@ stages {
         steps {
             echo 'Pulling .....';
             git branch : 'farouk-back',
-            url : 'git@github.com:farouk-hajjej/Devops-Projet-5SE1.git'
+            url : 'https://github.com/farouk-hajjej/Devops-Projet-5SE1.git'
           //credentialsId : ' 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 ' ;
         }
         }
