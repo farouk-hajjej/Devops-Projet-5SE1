@@ -27,8 +27,17 @@ stages {
                      sh  'mvn clean'
                  }
              }
+        stage('MVN COMPILE'){
+            steps{
+                sh  'mvn compile'
+            }
+        }
 
-
+        stage('MVN PACKAGE'){
+              steps{
+                  sh  'mvn package'
+              }
+        }
 
 }
 }
