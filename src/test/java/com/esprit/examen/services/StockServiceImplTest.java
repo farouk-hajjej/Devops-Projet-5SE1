@@ -9,8 +9,10 @@ import java.util.Optional;
 import com.esprit.examen.repositories.StockRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -18,20 +20,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.esprit.examen.entities.Stock;
-@ExtendWith(MockitoExtension.class)
+
 //@RunWith(SpringRunner.class)
-@Slf4j
+
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class StockServiceImplTest {
-	@Autowired
-	IStockService stockService;
+	//@Autowired
+	//IStockService stockService;
 	@Mock
     StockRepository stockRepository;
-	Stock s =Stock.builder().libelleStock("string").qte(2).qteMin(3).build();
+	@InjectMocks
+	StockServiceImpl stockServiceImpl;
+	Stock stock = new Stock("stock1", 122 , 12  );
+	//Stock s =Stock.builder().libelleStock("string").qte(2).qteMin(3).build();
 	List<Stock> list=new ArrayList<Stock>(){
 		{
-			add(Stock.builder().libelleStock("hhh").qte(222).qteMin(22).build());
-			add(Stock.builder().libelleStock("hhddh").qte(22552).qteMin(22).build());
+			add(new Stock("stock2", 100 , 15));
+			add(new Stock("stock3", 110 , 20));
 		}
 
 	};
@@ -49,13 +55,13 @@ public class StockServiceImplTest {
 		
 	}
 	*/
-	 
+	 @Test
 	public void retreiveStockTest(){
-        Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(s));
-        Stock stock=stockService.retrieveStock((long)2);
-        assertNotNull(stock);
-        log.info("get ==>" + stock.toString());
+        Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(stock));
+        Stock stock1=stockServiceImpl.retrieveStock(1L);
+		Assertions.assertNotNull(stock1);
     }
+    /*
 	@Test
 	public void testAddStockOptimized() {
 
