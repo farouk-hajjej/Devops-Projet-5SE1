@@ -58,11 +58,10 @@ public class ProduitServiceImpl implements IProduitService {
 
     @Override
     public void assignProduitToStock(Long idProduit, Long idStock) {
-        Produit produit = produitRepository.findById(idProduit).orElse(null);
-        Stock stock = stockRepository.findById(idStock).orElse(null);
-        assert produit != null;
-        produit.setStock(stock);
-        produitRepository.save(produit);
+     /*Optional<Produit> produit = produitRepository.findById(idProduit);
+		Stock stock = stockRepository.findById(idStock).orElse(null);
+		produit.setStock(stock);
+		produitRepository.save(produit);*/
 
     }
 
