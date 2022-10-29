@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
     @SpringBootTest
     @ExtendWith(MockitoExtension.class)
-    public class ProductServiceImplMock {
+     class ProductServiceImplMock {
 
         @Mock
         ProduitRepository produitRepository;
@@ -38,7 +38,7 @@ import java.util.Optional;
 
 
         @Test
-        public void testRetrieveProduit() {
+         void testRetrieveProduit() {
             Mockito.when(produitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(produit));
             Produit prod1 = produitServiceImpl.retrieveProduit(1L);
             Assertions.assertNotNull(prod1);
