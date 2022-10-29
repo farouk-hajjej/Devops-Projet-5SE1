@@ -25,14 +25,18 @@ import java.util.Optional;
         @InjectMocks
         ProduitServiceImpl produitServiceImpl;
 
-        Produit produit = new Produit("p1", "pc" , 12 ,new Date() );
-
-        List<Produit> listUsers = new ArrayList<Produit>() {
+        Produit produit = new Produit("p", "pc" , 12 ,new Date() );
+        Produit produit1 = new Produit("p2", "game" , 90 ,new Date() );
+        Produit produit2 = new Produit("p3", "phone" , 15 ,new Date() );
+        List<Produit> list = new ArrayList<Produit>() {
             {
-                add(new Produit("p2", "phone", 13,  new Date()));
-                add(new Produit("p3", "game", 14 , new Date()));
+                add(produit1);
+                add(produit2);
             }
         };
+
+
+
         @Test
         public void testRetrieveProduit() {
             Mockito.when(produitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(produit));
@@ -40,5 +44,17 @@ import java.util.Optional;
             Assertions.assertNotNull(prod1);
         }
 
+
+        @Test
+        void updateProduitTest(){
+            produit.setLibelleProduit("Libelle 1 updated");
+            Assertions.assertNotNull(produitServiceImpl.updateProduit(produit));
+        }
+        @Test
+        void deleteSecteurTest(){
+            produitServiceImpl.deleteProduit(
+                    produit2.getIdProduit());
+            Assertions.assertNotNull(list);
+        }
 
     }
