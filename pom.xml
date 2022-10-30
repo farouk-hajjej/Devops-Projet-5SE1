@@ -75,6 +75,7 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -119,6 +120,7 @@
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
+
 		</plugins>
 		<finalName>docker-spring-boot</finalName>
 	</build>
