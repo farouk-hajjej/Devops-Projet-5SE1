@@ -41,7 +41,7 @@ stages {
          stage('MVN SONARQUBE')
                     {
                         steps{
-                        sh  'mvn sonar:sonar
+                        sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                         }
                     }
                      stage("Tests JUnit / Mockito"){
