@@ -51,7 +51,7 @@ import java.util.Optional;
             Assertions.assertNotNull(produitServiceImpl.updateProduit(produit));
         }
         @Test
-        void deleteSecteurTest(){
+        void deleteProduitTest(){
             produitServiceImpl.deleteProduit(
                     produit2.getIdProduit());
             Assertions.assertNotNull(list);
