@@ -44,6 +44,11 @@ stages {
                         sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                         }
                     }
+                     stage("Tests JUnit / Mockito"){
+                                 steps {
+                                   sh 'mvn test'
+                                 }
+                             }
 
 }
 }
