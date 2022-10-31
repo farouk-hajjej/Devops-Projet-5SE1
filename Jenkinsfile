@@ -38,17 +38,15 @@ stages {
                   sh  'mvn package'
               }
         }
-         stage('MVN SONARQUBE')
-                    {
-                        steps{
-                        sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
-                        }
-                    }
-                     stage("Tests JUnit / Mockito"){
-                                 steps {
-                                   sh 'mvn test'
-                                 }
-                             }
+          stage("Sonar Quality Check"){
+                		steps{
+                		    script{
+                		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
+                		     sh 'mvn sonar:sonar'
+                	    	       }
+                	         }
+                       }
+                 }
 
 }
 }
