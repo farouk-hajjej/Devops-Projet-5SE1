@@ -3,7 +3,6 @@ package com.esprit.examen.services;
 
 import java.util.Date;
 import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -18,7 +17,7 @@ import com.esprit.examen.repositories.ProduitRepository;
 
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
-public class ProduiServiceImplTest {
+ class ProduitServiceImplTest {
     @Autowired
     IProduitService produitService;
 
@@ -28,14 +27,14 @@ public class ProduiServiceImplTest {
     Produit produit = new Produit("p", "pc" , 12 ,new Date() );
     @Test
     @Order(1)
-    public void testaddProdiut() {
+    void testaddProdiut() {
         Produit produitAdded =  produitService.addProduit(produit);
         Assertions.assertEquals(produitAdded.getCodeProduit(), produitAdded.getCodeProduit());
     }
 
     @Test
     @Order(2)
-    public void testRetrieveAllProduits() {
+    void testRetrieveAllProduits() {
         List<Produit> listProduits = produitService.retrieveAllProduits();
         Assertions.assertEquals(listProduits.size(), listProduits.size());
     }
