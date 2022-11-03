@@ -12,7 +12,7 @@ import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class StockServiceImplMockTest {
+ public class StockServiceImplMockTest {
     @Mock
     StockRepository stockRepository;
     @InjectMocks

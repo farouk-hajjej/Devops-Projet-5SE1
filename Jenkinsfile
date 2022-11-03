@@ -47,6 +47,11 @@ stages {
                 	         }
                        }
                  }
+                    stage("Test JUnit /Mockito"){
+                                 steps {
+                                             sh 'mvn test'
+                                 }
+                           }
 
 }
 }
