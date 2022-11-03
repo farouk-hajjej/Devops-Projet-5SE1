@@ -43,7 +43,7 @@ stages {
                   sh  'mvn package'
               }
         }
-          stage("Sonar Quality Check"){
+        stage("Sonar Quality Check"){
                 		steps{
                 		    script{
                 		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
@@ -58,27 +58,34 @@ stages {
                                  }
                            }
            stage('Building our image') {
-                               steps {
+                          steps{
                                    script {
                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                    }
-                               }
-                           }
-
-                           stage('Deploy our image') {
-                               steps {
-                                   script {
-                                       docker.withRegistry( '', registryCredential ) {
-                                       dockerImage.push()
-                                               }
-                                   }
-                               }
                           }
-                           stage('Cleaning up') {
-                               steps {
-                                   sh "docker rmi $registry:$BUILD_NUMBER"
-                               }
+                   }
+           stage('Docker images'){
+                           steps{
+                                    sh 'docker images'
                            }
+                    }
+           stage('Deploy our image') {
+                           steps {
+                                    script {
+                                        docker.withRegistry( '', registryCredential ) {
+                                            dockerImage.push()
+                                        }
+                                    }
+                           }
+                     }
+           stage('Cleaning up') {
+                             steps {
+                                       sh "docker rmi $registry:$BUILD_NUMBER"
+                             }
+                       }
+
+
+
 
 }
 }
