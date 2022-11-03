@@ -12,7 +12,7 @@ import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
 @SpringBootTest(classes =StockServiceImplMockTest.class)
 @ExtendWith(MockitoExtension.class)
- public class StockServiceImplMockTest {
+  class StockServiceImplMockTest {
  @Mock
  StockRepository stockRepository;
 
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
   }
  };
  @Test
- public void testRetrieveStock() {
+  void testRetrieveStock() {
   Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(stock));
   Stock stock1 = stockServiceImp.retrieveStock(1L);
   Assertions.assertNotNull(stock1);
