@@ -1,4 +1,9 @@
 package com.esprit.examen.controllers;
+
+
+
+import com.esprit.examen.dto.ProduitDTO;
+import org.modelmapper.ModelMapper;
 import com.esprit.examen.entities.Produit;
 import com.esprit.examen.services.IProduitService;
 import io.swagger.annotations.Api;
@@ -15,6 +20,8 @@ public class ProduitRestController {
 
     @Autowired
     IProduitService produitService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @GetMapping("/retrieve-all-produits")
     @ResponseBody
@@ -30,8 +37,9 @@ public class ProduitRestController {
     }
     @PostMapping("/add-produit")
     @ResponseBody
-    public Produit addProduit(@RequestBody Produit produit) {
-        return produitService.addProduit(produit);
+    public Produit addProduit(@RequestBody ProduitDTO p) {
+        Produit persistentProduit = modelMapper.map(p,Produit.class);
+        return produitService.addProduit( persistentProduit);
 
     }
 
@@ -43,8 +51,9 @@ public class ProduitRestController {
 
     @PutMapping("/modify-produit")
     @ResponseBody
-    public Produit modifyProduit(@RequestBody Produit produit) {
-        return produitService.updateProduit(produit);
+    public Produit modifyProduit(@RequestBody ProduitDTO produit) {
+       Produit persistentProduit = modelMapper.map(produit,  Produit.class);
+        return produitService.updateProduit(persistentProduit);
     }
 
 
