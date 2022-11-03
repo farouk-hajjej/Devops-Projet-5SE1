@@ -50,5 +50,10 @@ public class Produit implements Serializable {
 
 
 	public Produit(String codeProduit, String libelleProduit, float prix,Date dateCreation) {
+
+		this.codeProduit = codeProduit;
+		this.libelleProduit = libelleProduit;
+		this.prix = prix;
+		this.dateCreation = dateCreation;
 	}
 }
