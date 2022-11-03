@@ -133,7 +133,7 @@
 			</plugin>
 
 		</plugins>
-		<finalName>docker-spring-boot</finalName>
+		<finalName>devopsdocker</finalName>
 	</build>
 	<distributionManagement>
 		<snapshotRepository>
