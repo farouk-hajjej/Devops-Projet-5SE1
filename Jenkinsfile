@@ -1,5 +1,10 @@
 import java.text.SimpleDateFormat
 pipeline {
+environment {
+        registry = "faroukhajjej1/projet-devops"
+        registryCredential = 'dckr_pat_HnIKKGgZvJoyNbu0Vkoic55XsuQ'
+        dockerImage = ''
+    }
 agent any
 
 stages {
@@ -47,11 +52,33 @@ stages {
                 	         }
                        }
                  }
-                    stage("Test JUnit /Mockito"){
+           stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
                                  }
                            }
+            stage('Building our image') {
+                                               steps {
+                                                   script {
+                                                       dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                                   }
+                                               }
+                                           }
+
+                                           stage('Deploy our image') {
+                                               steps {
+                                                   script {
+                                                       docker.withRegistry( '', registryCredential ) {
+                                                       dockerImage.push()
+                                                               }
+                                                   }
+                                               }
+                                          }
+                                           stage('Cleaning up') {
+                                               steps {
+                                                   sh "docker rmi $registry:$BUILD_NUMBER"
+                                               }
+                                           }
 
 }
 }
