@@ -13,6 +13,26 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
  public class StockServiceImplMockTest {
+ @Mock
+ StockRepository stockRepository;
+
+ @InjectMocks
+ StockServiceImpl stockServiceImp;
+
+ Stock stock = new Stock("f1", 1,2);
+
+ List<Stock> listStocks = new ArrayList<Stock>() {
+  {
+   add(new Stock("f1aa", 2,4));
+   add(new Stock("f1f", 4,7));
+  }
+ };
+ @Test
+ public void testRetrieveProduit() {
+  Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(stock));
+  Stock stock1 = stockServiceImp.retrieveStock(1L);
+  Assertions.assertNotNull(stock1);
+ }
     /*
     @Mock
     StockRepository stockRepository;
