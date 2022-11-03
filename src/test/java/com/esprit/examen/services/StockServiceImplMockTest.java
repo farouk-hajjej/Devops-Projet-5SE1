@@ -28,37 +28,26 @@ import static org.mockito.Mockito.*;
   }
  };
  @Test
- public void testRetrieveProduit() {
+ public void testRetrieveStock() {
   Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(stock));
   Stock stock1 = stockServiceImp.retrieveStock(1L);
   Assertions.assertNotNull(stock1);
  }
-    /*
-    @Mock
-    StockRepository stockRepository;
-    @InjectMocks
-    IStockService stockService = new StockServiceImpl();
-    Stock stock = new Stock("f1", 1,2);
-    List<Stock> listStocks = new ArrayList<Stock>() {
-        {
-            add(new Stock("f1aa", 2,4));
-            add(new Stock("f1f", 4,7));
-        }
-    };
+
 
     @Test
-    void testRetrieveProduitByid() {
+    void testRetrieveStockByid() {
         when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(stock));
-        Stock stockq = stockService.retrieveStock(1L);
-        System.out.println(stockq);
+        Stock stockq = stockServiceImp.retrieveStock(1L);
+     System.out.println(stockq);
         Assertions.assertNotNull(stockq);
     }
     @Test
-    void testRetrieveAllProduit() {
+    void testRetrieveAllStock() {
         List<Stock> stocks = new ArrayList();
         stocks.add(new Stock());
         when(stockRepository.findAll()).thenReturn(stocks);
-        List<Stock> expected = stockService.retrieveAllStocks();
+        List<Stock> expected = stockServiceImp.retrieveAllStocks();
         Assertions.assertEquals(expected, stocks);
         verify(stockRepository).findAll();
     }
@@ -66,7 +55,7 @@ import static org.mockito.Mockito.*;
     void testCreateNewObject() {
         Stock obj = new Stock("new", 2,3);
         when(stockRepository.save(isA(Stock.class))).thenAnswer(invocation -> (Stock) invocation.getArguments()[0]);
-        Stock returnedObj = stockService.addStock(obj);
+        Stock returnedObj = stockServiceImp.addStock(obj);
         ArgumentCaptor<Stock> savedObjectArgument = ArgumentCaptor.forClass(Stock.class);
         verify(stockRepository, times(1)).save(savedObjectArgument.capture());
         verifyNoMoreInteractions(stockRepository);
@@ -79,11 +68,10 @@ import static org.mockito.Mockito.*;
         produite.setLibelleStock("new test");
         produite.setIdStock(1L);
         when(stockRepository.findById(produite.getIdStock())).thenReturn(Optional.of(produite));
-        Stock stockq = stockService.retrieveStock(1L);
-        stockService.deleteStock(stockq.getIdStock());
+        Stock stockq = stockServiceImp.retrieveStock(1L);
+     stockServiceImp.deleteStock(stockq.getIdStock());
         verify(stockRepository).deleteById(stockq.getIdStock());
     }
 
-     */
 
 }
