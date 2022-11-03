@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.*;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
-@SpringBootTest
+@SpringBootTest(classes =StockServiceImplMockTest.class)
 @ExtendWith(MockitoExtension.class)
  public class StockServiceImplMockTest {
  @Mock
