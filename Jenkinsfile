@@ -68,13 +68,11 @@ stages {
                                            stage('Deploy our image') {
                                                steps {
                                                    script {
-                                                      withCredentials([string(credentialsId: 'dockerdevops', variable: 'dockerpwd')]) {
-                                                          sh 'docker login -u faroukhajjej1 -p ${dockerhubpwd}'
-                                                          }
-                                                           sh 'docker push faroukhajjej1/projet-devops'
-                                                      }
+                                                       docker.withRegistry( '', registryCredential ) {
+                                                       dockerImage.push()
+                                                               }
                                                    }
-
+                                               }
                                           }
                                            stage('Cleaning up') {
                                                steps {
