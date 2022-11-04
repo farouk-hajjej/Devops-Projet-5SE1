@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
 EXPOSE 8089
-ADD target/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
-ENTRYPOINT ["java","-jar","/tpAchatProject-1.0.jar"]
+ADD target/docker-spring-boot.jar docker-spring-boot.jar
+ENTRYPOINT ["java","-jar","/docker-spring-boot.jar"]

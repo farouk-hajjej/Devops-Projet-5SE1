@@ -64,7 +64,7 @@ stages {
                                                    }
                                                }
                                            }
-/*
+/
                                            stage('Deploy our image') {
                                                steps {
                                                    script {
@@ -79,7 +79,7 @@ stages {
                                                    sh "docker rmi $registry:$BUILD_NUMBER"
                                                }
                                            }
-*/
+
 
 
 
