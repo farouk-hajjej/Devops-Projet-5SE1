@@ -64,7 +64,6 @@ stages {
                                                    }
                                                }
                                            }
-/
                                            stage('Deploy our image') {
                                                steps {
                                                    script {
