@@ -70,10 +70,11 @@ stages {
                                                    script {
                                                       withCredentials([string(credentialsId: 'dockerdevops', variable: 'dockerpwd')]) {
                                                           sh 'docker login -u faroukhajjej1 -p ${dockerhubpwd}'
+                                                          }
                                                            sh 'docker push faroukhajjej1/projet-devops'
                                                       }
                                                    }
-                                               }
+
                                           }
                                            stage('Cleaning up') {
                                                steps {
