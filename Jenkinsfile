@@ -57,6 +57,7 @@ stages {
                                              sh 'mvn test'
                                  }
                            }
+                           /*
                            stage('Building our image') {
                                                steps {
                                                    script {
@@ -78,6 +79,7 @@ stages {
                                                    sh "docker rmi $registry:$BUILD_NUMBER"
                                                }
                                            }
+                                           */
 
 
 
