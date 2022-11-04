@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat
 pipeline {
 environment {
         registry = "faroukhajjej1/projet-devops"
-        registryCredential = 'dckr_pat_HnIKKGgZvJoyNbu0Vkoic55XsuQ'
+        registryCredential = 'dckr_pat_kjoTv90vd8qjptb-whk4G4TBLJo'
         dockerImage = ''
     }
 agent any
