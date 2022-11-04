@@ -1,18 +1,19 @@
-version: '2'
+version: '2.2'
 services:
   mysqldb:
-    image: mysql:5.6
-    ports:
-      - 3306:3306
+    image: mysql:5.7
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: achatdb
-      MYSQL_PASSWORD: mysql
-      MYSQL_ROOT_PASSWORD: mysql
-  application:
-    image: achat
-    build: .
-    restart: always
-    depends_on:
-      - mysqldb
+      MYSQL_USER: tpachatback
+      MYSQL_PASSWORD: tpachatback
+    ports:
+      - 3306:3306
+
+  app:
+    build: ./
+    restart: on-failure
     ports:
       - 8089:8089
+    depends_on:
+      - mysqldb
