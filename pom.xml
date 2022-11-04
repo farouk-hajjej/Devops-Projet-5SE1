@@ -133,7 +133,7 @@
 			</plugin>
 
 		</plugins>
-		<finalName>devopsdocker</finalName>
+		<finalName>projet-devops</finalName>
 	</build>
 	<distributionManagement>
 		<snapshotRepository>
