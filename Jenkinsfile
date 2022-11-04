@@ -8,15 +8,7 @@ pipeline {
 
     stages {
 
-        stage('Git stage') {
-
-            steps {
-                echo "Getting project form github";
-                 git branch: 'monta_produit',
-                 url : 'https://github.com/farouk-hajjej/Devops-Projet-5SE1.git';
-
-            }
-        }
+       
 
         stage('MVN CLEAN  stage') {
 
