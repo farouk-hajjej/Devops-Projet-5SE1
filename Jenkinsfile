@@ -46,12 +46,13 @@ stages {
                 	         }
                        }
                  }
+                 /*
            stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
                                  }
                            }
-                           /*
+
                               stage('MVN PACKAGE'){
                                          steps{
                                              sh  'mvn package'
