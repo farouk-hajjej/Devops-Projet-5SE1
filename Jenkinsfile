@@ -5,7 +5,8 @@ agent any
         registry = "faroukhajjej1/projet-devops"
         registryCredential = 'dckr_pat_ozDP-TtLooTXf3sG8JiIxEdCTx4'
         dockerImage = ''
-    } **/
+    }**/
+
 stages {
     stage('Checkout GIT') {
         steps {
@@ -28,7 +29,7 @@ stages {
 
           stage('MVN CLEAN'){
                  steps{
-                     sh  'mvn clean install'
+                     sh  'mvn clean '
                  }
              }
         stage('MVN COMPILE'){
@@ -36,17 +37,18 @@ stages {
                 sh  'mvn compile'
             }
         }
-        stage('MVN PACKAGE'){
-                   steps{
-                      sh  'mvn package'
-                      }
-              }
-               stage("nexus deploy"){
-                            steps{
-                                 sh 'mvn  deploy'
-                            }
-                       }
-       stage("Sonar Quality Check"){
+             stage('MVN PACKAGE'){
+                  steps{
+                        sh  'mvn package'
+                          }
+                          }
+              stage("nexus deploy"){
+                     steps {
+                        sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.185:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
+                             }
+                              }
+
+        stage("Sonar Quality Check"){
                 		steps{
                 		    script{
                 		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
@@ -55,32 +57,43 @@ stages {
                 	         }
                        }
                  }
+
            stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
                                  }
                            }
+
                            stage('Building our image') {
-                                               steps {
-                                                  /** script {
+                                              /** steps {
+                                                   script {
                                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                                    }**/
-                                                    sh 'docker build -t faroukhajjej1/projectdevops'
+                                                   sh 'docker build -t faroukhajjej1/projet-devops'
                                                }
                                            }
-                                              stage('Docker login') {
+                                             stage('Docker login') {
                                                           steps {
                                                                     sh 'echo "login Docker ...."'
                                                                     sh 'docker login -u faroukhajjej1 -p Fh97213990'
                                                           }
                                                     }
-                                           stage('Docker push') {
-                                               steps {
-                                                   sh 'echo "Docker is pushing ...."'
-                                                                          sh 'docker push faroukhajjej1/projectdevops '
-
-                                               }
-                                               }
+                                                       stage('Docker push') {
+                                                                   steps {
+                                                                            /**script {
+                                                                                docker.withRegistry( '', registryCredential ) {
+                                                                                    dockerImage.push()
+                                                                                }
+                                                                            }**/
+                                                                            sh 'echo "Docker is pushing ...."'
+                                                                            sh 'docker push faroukhajjej1/projet-devops '
+                                                                   }
+                                                             }
+                                             /*stage('Cleaning up') {
+                                                         steps {
+                                                                   sh "docker rmi $registry:$BUILD_NUMBER"
+                                                         }
+                                                   }*/
 
 
 
