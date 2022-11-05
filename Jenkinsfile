@@ -6,7 +6,6 @@ environment {
         dockerImage = ''
     }
 agent any
-
 stages {
     stage('Checkout GIT') {
         steps {
