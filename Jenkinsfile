@@ -102,28 +102,12 @@ pipeline {
 
             }
         }
-        post{
-
-            success {
-                mail to: "devopsmonta2022@gmail.com",
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
-                from: "devopsmonta2022@gmail.com",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            }
-
-            failure{
-                mail to: "devopsmonta2022@gmail.com",
-                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                from: "devopsmonta2022@gmail.com",
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
-            }
-
-            changed{
-                mail to: "devopsmonta2022@gmail.com",
-                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                from: "devopsmonta2022@gmail.com",
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+          post {
+                failure {
+                    // notify users when the Pipeline fails
+                    mail to: 'devopsmonta2022@gmail.com',
+                            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                            body: "Something is wrong with ${env.BUILD_URL}"
+                }
             }
         }
-}
-}
