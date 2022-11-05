@@ -65,7 +65,7 @@ stages {
                                                   /** script {
                                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                                    }**/
-                                                    sh 'docker build -t faroukhajjej1/projectdevops1
+                                                    sh 'docker build -t faroukhajjej1/projectdevops1'
                                                }
                                            }
                                               stage('Docker login') {
