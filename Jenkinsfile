@@ -36,7 +36,7 @@ stages {
                 sh  'mvn compile'
             }
         }
-             stage('MVN PACKAGE'){
+        stage('MVN PACKAGE'){
                    steps{
                       sh  'mvn package'
                       }
@@ -50,7 +50,6 @@ stages {
                 	         }
                        }
                  }
-
            stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
