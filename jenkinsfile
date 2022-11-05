@@ -47,7 +47,19 @@ pipeline{
         }
 	stage ('Upload War To Nexus'){
 	   steps {
-	     script : 'mvn clean package'
+	   nexusArtifactUploader artifacts: [
+	   [artifactId: 'achat',
+	   classifier: '',
+	   file: 'target/achat-1.0.war',
+	   type: 'war']
+	   ], 
+	   credentialsId: 'nexus3',
+	   groupId: 'tn.esprit.rh',
+	   nexusUrl: '192.168.43.108', 
+	   nexusVersion: 'nexus3', 
+	   protocol: 'http', 
+	   repository: 'http://192.168.43.108:8081/repository/backend_aziz/', 
+	   version: '1.0'
 	         }
 	   }
         }
