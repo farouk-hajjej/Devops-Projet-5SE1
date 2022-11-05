@@ -1,7 +1,7 @@
 pipeline {
     agent any
    environment {
-        registry = "montassarslama/achat"
+        registry = "montassarslama/devopsfin"
         registryCredential = 'docker'
         dockerImage = ''
     }
