@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat
 pipeline {
     agent any
    environment {
@@ -7,7 +8,15 @@ pipeline {
     }
 
     stages {
-
+        stage('Date') {
+             steps {
+                script{
+                     def date = new Date()
+                     sdf = new SimpleDateFormat("MM/dd/yyyy")
+                     println(sdf.format(date))
+                             }
+                             }
+                             }
 
 
         stage('MVN CLEAN  stage') {
@@ -52,7 +61,7 @@ pipeline {
             }
         }
 
-        stage('Mockito stage') {
+        stage('Test JUnit /Mockito stage') {
 
             steps {
             sh 'mvn test'
@@ -93,7 +102,28 @@ pipeline {
 
             }
         }
+ post{
 
+            success {
+                mail to: "devopsmonta2022@gmail.com",
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
+                from: "devopsmonta2022@gmail.com",
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            }
 
-    }
+            failure{
+                mail to: "devopsmonta2022@gmail.com",
+                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                from: "devopsmonta2022@gmail.com",
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+            }
+
+            changed{
+                mail to: "devopsmonta2022@gmail.com",
+                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                from: "devopsmonta2022@gmail.com",
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+            }
+        }
 }
+
