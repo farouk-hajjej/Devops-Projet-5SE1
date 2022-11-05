@@ -64,14 +64,14 @@ stages {
                                  }
                            }
 
-                           stage('Building our image') {
+                        /* stage('Building our image') {
                                              steps {
-                                                     /**script {
-                                                       dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                                                   }**/
-                                                   sh 'docker build -t faroukhajjej1/projet-devops:156'
+
+                                                   sh 'docker build -t faroukhajjej1/projet-devops'
                                                }
                                            }
+                              */
+
                                              stage('Docker login') {
                                                           steps {
                                                                     sh 'echo "login Docker ...."'
@@ -86,14 +86,9 @@ stages {
                                                                                 }
                                                                             }**/
                                                                             sh 'echo "Docker is pushing ...."'
-                                                                            sh 'docker push faroukhajjej1/projet-devops '
+                                                                            sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }
-                                             /*stage('Cleaning up') {
-                                                         steps {
-                                                                   sh "docker rmi $registry:$BUILD_NUMBER"
-                                                         }
-                                                   }*/
 
 
 
