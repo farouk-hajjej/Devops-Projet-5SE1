@@ -37,7 +37,12 @@ stages {
                 sh  'mvn compile'
             }
         }
-        stage("Sonar Quality Check"){
+             stage('MVN PACKAGE'){
+                                                 steps{
+                                                     sh  'mvn package'
+                                                 }
+                                           }
+       /* stage("Sonar Quality Check"){
                 		steps{
                 		    script{
                 		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
@@ -46,7 +51,7 @@ stages {
                 	         }
                        }
                  }
-                 /*
+
            stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
