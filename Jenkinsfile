@@ -42,7 +42,7 @@ stages {
                       sh  'mvn package'
                       }
               }
-       /* stage("Sonar Quality Check"){
+       stage("Sonar Quality Check"){
                 		steps{
                 		    script{
                 		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
@@ -63,7 +63,7 @@ stages {
                                              sh  'mvn package'
                                          }
                                    }
-*/
+
                             stage("nexus deploy"){
                                          steps {
                                              sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.183:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
