@@ -80,6 +80,7 @@ stages {
                                                                           sh 'docker push faroukhajjej1/projectdevops1 '
 
                                                }
+                                               }
 
 
 
