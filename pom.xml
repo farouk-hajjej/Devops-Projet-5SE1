@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.esprit.examen</groupId>
 	<artifactId>tpAchatProject</artifactId>
-	<version>1.0</version>
+	<version>6.1</version>
+	<packaging>jar</packaging>
 	<name>tpAchatProject</name>
 	<description>tpAchatProject</description>
 	<properties>
@@ -166,11 +167,11 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>deploymentRepo</id>
-			<url>http://192.168.1.179:8081//repository/maven-snapshots/</url>
+			<url>http://192.168.1.179:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>deploymentRepo</id>
-			<url>http://192.168.1.179:8081//repository/maven-releases/</url>
+			<url>http://192.168.1.179:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 </project>
