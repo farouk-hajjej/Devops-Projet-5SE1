@@ -1,11 +1,11 @@
 import java.text.SimpleDateFormat
 pipeline {
-environment {
+agent any
+/**environment {
         registry = "faroukhajjej1/projet-devops"
         registryCredential = 'dckr_pat_ozDP-TtLooTXf3sG8JiIxEdCTx4'
         dockerImage = ''
-    }
-agent any
+    } **/
 stages {
     stage('Checkout GIT') {
         steps {
@@ -41,6 +41,11 @@ stages {
                       sh  'mvn package'
                       }
               }
+               stage("nexus deploy"){
+                            steps{
+                                 sh 'mvn  deploy'
+                            }
+                       }
        stage("Sonar Quality Check"){
                 		steps{
                 		    script{
@@ -55,39 +60,26 @@ stages {
                                              sh 'mvn test'
                                  }
                            }
-
-                              stage('MVN PACKAGE'){
-                                         steps{
-                                             sh  'mvn package'
-                                         }
-                                   }
-                            stage("nexus deploy"){
-                                         steps {
-                                             sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.183:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
-                                                }
-                                    }
-
                            stage('Building our image') {
                                                steps {
-                                                   script {
+                                                  /** script {
                                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                                                   }
+                                                   }**/
+                                                    sh 'docker build -t faroukhajjej1/projectdevops1
                                                }
                                            }
-                                           stage('Deploy our image') {
+                                              stage('Docker login') {
+                                                          steps {
+                                                                    sh 'echo "login Docker ...."'
+                                                                    sh 'docker login -u faroukhajjej1 -p Fh97213990'
+                                                          }
+                                                    }
+                                           stage('Docker push') {
                                                steps {
-                                                   script {
-                                                       docker.withRegistry( '', registryCredential ) {
-                                                       dockerImage.push()
-                                                               }
-                                                   }
+                                                   sh 'echo "Docker is pushing ...."'
+                                                                          sh 'docker push faroukhajjej1/projectdevops1 '
+
                                                }
-                                          }
-                                           stage('Cleaning up') {
-                                               steps {
-                                                   sh "docker rmi $registry:$BUILD_NUMBER"
-                                               }
-                                           }
 
 
 
