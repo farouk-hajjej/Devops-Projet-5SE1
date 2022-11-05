@@ -38,10 +38,10 @@ stages {
             }
         }
              stage('MVN PACKAGE'){
-                                                 steps{
-                                                     sh  'mvn package'
-                                                 }
-                                           }
+                   steps{
+                      sh  'mvn package'
+                      }
+              }
        /* stage("Sonar Quality Check"){
                 		steps{
                 		    script{
@@ -66,7 +66,7 @@ stages {
 */
                             stage("nexus deploy"){
                                          steps {
-                                             sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.182:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
+                                             sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.183:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
                                                 }
                                     }
 
