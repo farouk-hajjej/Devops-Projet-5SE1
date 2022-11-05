@@ -1,14 +1,14 @@
 pipeline {
     agent any
    environment {
-        registry = "montassarslama/projet"
+        registry = "montassarslama/achat"
         registryCredential = 'docker'
         dockerImage = ''
     }
 
     stages {
 
-       
+
 
         stage('MVN CLEAN  stage') {
 
