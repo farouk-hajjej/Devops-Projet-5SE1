@@ -29,7 +29,7 @@ stages {
 
           stage('MVN CLEAN'){
                  steps{
-                     sh  'mvn clean'
+                     sh  'mvn clean install'
                  }
              }
         stage('MVN COMPILE'){
