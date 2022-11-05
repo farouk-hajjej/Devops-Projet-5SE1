@@ -45,5 +45,10 @@ pipeline{
                 }
             }
         }
+	stage ('Upload War To Nexus'){
+	   steps {
+	     script : 'mvn clean package'
+	         }
+	   }
         }
 }
