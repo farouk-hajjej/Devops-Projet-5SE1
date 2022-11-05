@@ -65,8 +65,8 @@ stages {
                            }
 
                            stage('Building our image') {
-                                              /** steps {
-                                                   script {
+                                             steps {
+                                                     /**script {
                                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                                    }**/
                                                    sh 'docker build -t faroukhajjej1/projet-devops'
