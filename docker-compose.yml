@@ -1,28 +1,18 @@
-version: "2"
+version: '2'
 services:
-  mysql-container:
-    container_name: mysql-container
+  mysqldb:
+    image: mysql:5.6
     ports:
-      - '3306:3306'
-    restart: unless-stopped
+      - 3306:3306
     environment:
-      - MYSQL_DATABASE=achatdb
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
-    volumes:
-      - mysql-container:/var/lib/mysql:rw
-    image: 'mysql:5.6'
-
-  monta_produit:
+      MYSQL_DATABASE: achatdb
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+  application:
+    image: achat
+    build: .
+    restart: always
     depends_on:
-      - mysql-container
-    container_name: tpAchatProject
-    image: projet
-    environment:
-      -SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/achatdb?useUnicode=yes&&useJDBCCompliantTimezoneShift=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    volumes:
-      - .m2:/root/.m2
+      - mysqldb
     ports:
-      - '8090:8089'
-
-volumes:
-  mysql-container: { }
+      - 8089:8089
