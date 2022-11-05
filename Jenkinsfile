@@ -37,12 +37,6 @@ stages {
                 sh  'mvn compile'
             }
         }
-
-        stage('MVN PACKAGE'){
-              steps{
-                  sh  'mvn package'
-              }
-        }
         stage("Sonar Quality Check"){
                 		steps{
                 		    script{
@@ -57,7 +51,12 @@ stages {
                                              sh 'mvn test'
                                  }
                            }
-                           /*
+                              stage('MVN PACKAGE'){
+                                         steps{
+                                             sh  'mvn package'
+                                         }
+                                   }
+
                             stage("nexus deploy"){
                                          steps {
                                              sh 'mvn deploy'
