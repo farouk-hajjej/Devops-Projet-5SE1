@@ -77,7 +77,7 @@ pipeline {
             }
         }
 
-       stage('Building our docker image') {
+        stage('Building our docker image') {
             steps {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -102,7 +102,7 @@ pipeline {
 
             }
         }
- post{
+        post{
 
             success {
                 mail to: "devopsmonta2022@gmail.com",
