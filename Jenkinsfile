@@ -36,5 +36,10 @@ stages {
                       sh  'mvn package'
                       }
               }
+               stage("nexus deploy"){
+                                   steps {
+                                      sh 'mvn deploy'
+                                           }
+                                      }
         }
     }
