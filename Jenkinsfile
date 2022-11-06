@@ -47,4 +47,24 @@ stages {
                             }
                       }
         }
+         stage('Building our image') {
+                                                     steps {
+                                                           sh 'docker build -t youssefkehili/tpachatprojet'
+                                                       }
+                                                   }
+
+
+                                                     stage('Docker login') {
+                                                                  steps {
+                                                                            sh 'echo "login"'
+                                                                            sh 'docker login -u youssefkehili -p youssef123'
+                                                                  }
+                                                            }
+                                                               stage('Docker push') {
+                                                                           steps {
+
+                                                                                    sh 'echo "Docker push ..."'
+                                                                                    sh 'docker push youssefkehili/tpachatprojet:156 '
+                                                                           }
+                                                                     }
     }
