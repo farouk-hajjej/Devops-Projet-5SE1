@@ -63,5 +63,5 @@ public class StockServiceImpl implements IStockService {
 		return stock;
 	}
 
-//ceci est un cmnt
+
 }
