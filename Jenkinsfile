@@ -70,7 +70,7 @@ stages {
                                                    sh 'docker build -t faroukhajjej1/projet-devops'
                                                }
                                            }
-                              */
+
 
                                              stage('Docker login') {
                                                           steps {
@@ -80,15 +80,12 @@ stages {
                                                     }
                                                        stage('Docker push') {
                                                                    steps {
-                                                                            /**script {
-                                                                                docker.withRegistry( '', registryCredential ) {
-                                                                                    dockerImage.push()
-                                                                                }
-                                                                            }**/
+
                                                                             sh 'echo "Docker is pushing ...."'
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
-                                                             }
+                                                             }*/
+
 
 
 
