@@ -10,7 +10,7 @@ stages {
             url : 'https://github.com/farouk-hajjej/Devops-Projet-5SE1.git'
         }
         }
-          stage('Date') {
+        stage('Date') {
                       steps {
                            script{
                            def date = new Date()
@@ -19,17 +19,17 @@ stages {
                                    }
 
                              }
-         }
+        }
 
-          stage('MVN CLEAN'){
+        stage('MVN CLEAN'){
                  steps{
                      sh  'mvn clean install'
                  }
-             }
+        }
         stage('MVN COMPILE'){
             steps{
                 sh  'mvn compile'
-            }
+                 }
         }
              stage('MVN PACKAGE'){
                    steps{
@@ -67,4 +67,6 @@ stages {
                                                                                     sh 'docker push youssefkehili/tpachatprojet:156 '
                                                                            }
                                                                      }
+    }
+
     }
