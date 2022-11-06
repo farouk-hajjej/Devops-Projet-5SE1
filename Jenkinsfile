@@ -46,6 +46,7 @@ stages {
                                sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=youssef123'
                             }
                       }
+             }
         }
          stage('Building our image') {
                                                      steps {
@@ -67,5 +68,6 @@ stages {
                                                                                     sh 'docker push youssefkehili/tpachatprojet:156 '
                                                                            }
                                                                      }
+    }
     }
 
