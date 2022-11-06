@@ -54,7 +54,7 @@ stages {
                 		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
                 		     sh 'mvn sonar:sonar'
                 	    	       }
-                	         }
+
                        }
                  }
 
@@ -115,7 +115,7 @@ stages {
                                                                               sh 'docker-compose up -d --build'
                                                                   }
                                                             }
-                                                            }
+
 
 
 
