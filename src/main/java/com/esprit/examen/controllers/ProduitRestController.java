@@ -51,12 +51,10 @@ public class ProduitRestController {
     @PutMapping("/modify-produit")
     @ResponseBody
     public Produit modifyProduit(@RequestBody ProduitDTO produit) {
-       Produit persistentProduit = modelMapper.map(produit,  Produit.class);
+        Produit persistentProduit = modelMapper.map(produit,  Produit.class);
         return produitService.updateProduit(persistentProduit);
     }
 
 
 
 }
-
-
