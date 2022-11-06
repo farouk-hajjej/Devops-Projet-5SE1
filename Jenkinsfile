@@ -54,11 +54,11 @@ stages {
                 		     withSonarQubeEnv(installationName: 'SonarQube-Projet', credentialsId: 'jenkins-sonar-token') {
                 		     sh 'mvn sonar:sonar'
                 	    	       }
-
+                	         }
                        }
                  }
 
-           stage("Test JUnit /Mockito"){
+        stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
                                  }
@@ -88,33 +88,33 @@ stages {
                                            }
                                       }
 
-                                                                     stage('Docker login') {
-                                                                         steps {
-                                                                            sh 'echo "login Docker ...."'
-                                                                               sh 'docker login -u faroukhajjej1 -p Fh97213990'
-                                                                                    }
-                                                                                     }
+                               stage('Docker login') {
+                                     steps {
+                                       sh 'echo "login Docker ...."'
+                                       sh 'docker login -u faroukhajjej1 -p Fh97213990'
+                                           }
+                                                       }
 
-                                                                     stage('Deploy our image') {
-                                                                         steps {
-                                                                             script {
-                                                                                 docker.withRegistry( '', registryCredential ) {
-                                                                                     dockerImage.push()
-                                                                                 }
-                                                                             }
-                                                                         }
-                                                                     }
+                                  stage('Deploy our image') {
+                                      steps {
+                                            script {
+                                             docker.withRegistry( '', registryCredential ) {
+                                                    dockerImage.push()
+                                                      }
+                                              }
+                                                               }
+                                                               }
                                                                     stage('Cleaning up') {
                                                                                  steps {
                                                                                            sh "docker rmi $registry:$BUILD_NUMBER"
                                                                                  }
                                                                            }
                                                                            */
-                                                  stage('DOCKER COMPOSE') {
-                                                                  steps {
-                                                                              sh 'docker-compose up -d --build'
-                                                                  }
-                                                            }
+                          stage('DOCKER COMPOSE') {
+                                steps {
+                                     sh 'docker-compose up -d --build'
+                                 }
+                              }
 
 
 
