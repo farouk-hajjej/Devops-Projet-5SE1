@@ -85,6 +85,11 @@ stages {
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }*/
+                                                  stage('DOCKER COMPOSE') {
+                                                                  steps {
+                                                                              sh 'docker-compose up -d '
+                                                                  }
+                                                            }
 
 
 
