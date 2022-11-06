@@ -1,12 +1,12 @@
 import java.text.SimpleDateFormat
 pipeline {
-agent any
-/**environment {
+environment {
         registry = "faroukhajjej1/projet-devops"
         registryCredential = 'dckr_pat_ozDP-TtLooTXf3sG8JiIxEdCTx4'
         dockerImage = ''
-    }**/
+    }
 
+agent any
 stages {
     stage('Checkout GIT') {
         steps {
@@ -70,21 +70,40 @@ stages {
                                                    sh 'docker build -t faroukhajjej1/projet-devops'
                                                }
                                            }
+                                           */
 
 
-                                             stage('Docker login') {
-                                                          steps {
-                                                                    sh 'echo "login Docker ...."'
-                                                                    sh 'docker login -u faroukhajjej1 -p Fh97213990'
-                                                          }
-                                                    }
-                                                       stage('Docker push') {
+
+                                                     /*  stage('Docker push') {
                                                                    steps {
 
                                                                             sh 'echo "Docker is pushing ...."'
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }*/
+                                                              stage('Building our image') {
+                                                                         steps {
+                                                                             script {
+                                                                                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                                                             }
+                                                                         }
+                                                                     }
+                                                                     stage('Docker login') {
+                                                                         steps {
+                                                                            sh 'echo "login Docker ...."'
+                                                                               sh 'docker login -u faroukhajjej1 -p Fh97213990'
+                                                                                    }
+                                                                                     }
+
+                                                                     stage('Deploy our image') {
+                                                                         steps {
+                                                                             script {
+                                                                                 docker.withRegistry( '', registryCredential ) {
+                                                                                     dockerImage.push()
+                                                                                 }
+                                                                             }
+                                                                         }
+                                                                     }
                                                   stage('DOCKER COMPOSE') {
                                                                   steps {
                                                                               sh 'docker-compose up -d '
