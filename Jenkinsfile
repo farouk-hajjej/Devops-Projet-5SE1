@@ -68,6 +68,6 @@ stages {
                                                                                     sh 'docker push youssefkehili/tpachatprojet:156 '
                                                                            }
                                                                      }
-    }
+
     }
 
