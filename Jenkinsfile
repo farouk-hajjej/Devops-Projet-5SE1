@@ -51,7 +51,7 @@ stages {
 
          stage('Building our image') {
                                steps {
-                                       sh 'docker build -t youssefkehili/tpachatprojet'
+                                       sh 'docker build -t youssefkehili/tpachatprojet .'
                                        }
                                      }
 
