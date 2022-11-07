@@ -114,11 +114,11 @@ stages {
                                                                                  }
                                                                            }*/
 
-                          stage('DOCKER COMPOSE') {
-                                steps {
-                                     sh 'docker-compose up -d --build'
-                                 }
-                              }
+ stage('DOCKER COMPOSE') {
+      steps {
+            sh 'docker-compose up -d --build'
+        }
+    }
 
 
 
