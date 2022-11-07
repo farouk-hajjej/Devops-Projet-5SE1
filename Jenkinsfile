@@ -87,6 +87,7 @@ stages {
                                      dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                            }
                                       }
+                                      }
 
                               /* stage('Docker login') {
                                      steps {
