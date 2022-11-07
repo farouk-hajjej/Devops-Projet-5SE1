@@ -62,5 +62,23 @@ pipeline{
 	   version: '1.0'
 	         }
 	   }
+	   stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t azizfridhi/achat .'
+                }
+            }
+        }
+        stage('Push image to Hub'){
+            steps{
+                script{
+                   withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                   sh 'docker login -u azizfridhi -p ${dockerhubpwd}'
+
+}
+                   sh 'docker push azizfridhi/achat'
+                }
+            }
+        }
         }
 }
