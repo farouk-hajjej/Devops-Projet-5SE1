@@ -1,10 +1,12 @@
 package com.esprit.examen.controllers;
 
+import com.esprit.examen.dto.ActiviteDTO;
 import com.esprit.examen.entities.SecteurActivite;
 import com.esprit.examen.services.ISecteurActiviteService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -12,6 +14,9 @@ import java.util.List;
 @Api(tags = "Gestion des secteurs activites")
 @RequestMapping("/secteurActivite")
 public class SecteurActiviteController {
+
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Autowired
 	ISecteurActiviteService secteurActiviteService;
@@ -34,9 +39,10 @@ public class SecteurActiviteController {
 
 	@PostMapping("/add-secteurActivite")
 	@ResponseBody
-	public SecteurActivite addSecteurActivite(@RequestBody SecteurActivite sa) {
+	public SecteurActivite addSecteurActivite(@RequestBody ActiviteDTO a) {
+		SecteurActivite persistentActivite = modelMapper.map(a,SecteurActivite.class);
 
-		return secteurActiviteService.addSecteurActivite(sa);
+		return secteurActiviteService.addSecteurActivite(persistentActivite);
 	}
 
 
@@ -49,8 +55,10 @@ public class SecteurActiviteController {
 
 	@PutMapping("/modify-secteurActivite")
 	@ResponseBody
-	public SecteurActivite modifySecteurActivite(@RequestBody SecteurActivite secteurActivite) {
-		return secteurActiviteService.updateSecteurActivite(secteurActivite);
+	public SecteurActivite modifySecteurActivite(@RequestBody ActiviteDTO a) {
+		SecteurActivite persistentActivite = modelMapper.map(a,SecteurActivite.class);
+
+		return secteurActiviteService.updateSecteurActivite(persistentActivite);
 	}
 
 	
