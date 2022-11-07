@@ -47,7 +47,12 @@ stages {
                                            }
                                    }*/
 
-
+ stage('Docker login') {
+                                                                  steps {
+                                                                            sh 'echo "login"'
+                                                                            sh 'docker login -u youssefkehili -p youssef123'
+                                                                  }
+                                                            }
 
          stage('Building our image') {
                                steps {
@@ -56,12 +61,7 @@ stages {
                                      }
 
 
-                               stage('Docker login') {
-                                                                  steps {
-                                                                            sh 'echo "login"'
-                                                                            sh 'docker login -u youssefkehili -p youssef123'
-                                                                  }
-                                                            }
+
                                                                stage('Docker push') {
                                                                            steps {
 
