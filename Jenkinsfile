@@ -47,7 +47,7 @@ stages {
     }
               stage("Nexus deploy"){
                      steps {
-                        sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.192:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
+                        sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.193:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
                              }
                               }
 
@@ -119,6 +119,30 @@ stages {
             sh 'docker-compose up -d --build'
         }
     }
+    post {
+
+                        success {
+                            mail to: "hajjej.farouk6@gmail.com",
+                            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
+                            from: 'mahdi.arfaoui1@esprit.tn',
+                            subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                        }
+
+                        failure{
+                            mail to: "mahdi.arfaoui1@esprit.tn",
+                            subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                            from: 'mahdi.arfaoui1@esprit.tn',
+                            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                        }
+
+                        changed{
+                            mail to: "hajjej.farouk6@gmail.com",
+                            subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                            from: 'mahdi.arfaoui1@esprit.tn',
+                            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                        }
+                    }
+
 
 
 
