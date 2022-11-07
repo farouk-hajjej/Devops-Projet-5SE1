@@ -36,16 +36,17 @@ stages {
                       sh  'mvn package'
                       }
                                   }
+                   stage('MVN SONARQUBE'){
+                         steps{
+                                sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=youssef123'
+                         }
+                   }
               stage("nexus deploy"){
                                    steps {
                                       sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.19:8081/repository/maven-releases -Dfile=target/tpAchatProject-1.0.jar'
                                            }
                                    }
-             stage('MVN SONARQUBE'){
-                            steps{
-                               sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=youssef123'
-                            }
-                                   }
+
 
 
          stage('Building our image') {
