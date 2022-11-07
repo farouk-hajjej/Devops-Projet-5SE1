@@ -81,20 +81,20 @@ stages {
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }*/
-                       /*   stage('Building our image') {
+                          stage('Building our image') {
                               steps {
                                   script {
                                      dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                            }
                                       }
 
-                               stage('Docker login') {
+                              /* stage('Docker login') {
                                      steps {
                                        sh 'echo "login Docker ...."'
                                        sh 'docker login -u faroukhajjej1 -p Fh97213990'
                                            }
                                                        }
-
+*/
                                   stage('Deploy our image') {
                                       steps {
                                             script {
@@ -109,7 +109,7 @@ stages {
                                                                                            sh "docker rmi $registry:$BUILD_NUMBER"
                                                                                  }
                                                                            }
-                                                                           */
+
                           stage('DOCKER COMPOSE') {
                                 steps {
                                      sh 'docker-compose up -d --build'
