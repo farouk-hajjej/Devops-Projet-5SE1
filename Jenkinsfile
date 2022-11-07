@@ -84,7 +84,7 @@ stages {
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }*/
-                      stage('Building our image') {
+                   /*   stage('Building our image') {
                               steps {
                                   script {
                                      dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -99,7 +99,7 @@ stages {
                                            }
                                                        }*/
 
-                            stage('Deploy our image') {
+                           /* stage('Deploy our image') {
                                       steps {
                                             script {
                                              docker.withRegistry( '', registryCredential ) {
@@ -118,27 +118,27 @@ stages {
       steps {
             sh 'docker-compose up -d --build'
         }
-    }
+    }*/
     post {
 
                         success {
                             mail to: "hajjej.farouk6@gmail.com",
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
-                            from: 'mahdi.arfaoui1@esprit.tn',
+                            from: 'hajjej.farouk6@gmail.com',
                             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
                         }
 
                         failure{
                             mail to: "mahdi.arfaoui1@esprit.tn",
                             subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                            from: 'mahdi.arfaoui1@esprit.tn',
+                            from: 'hajjej.farouk6@gmail.com',
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                         }
 
                         changed{
                             mail to: "hajjej.farouk6@gmail.com",
                             subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                            from: 'mahdi.arfaoui1@esprit.tn',
+                            from: 'hajjej.farouk6@gmail.com',
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                         }
                     }
