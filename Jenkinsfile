@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat
 pipeline {
     agent any
    environment {
-        registry = "montassarslama/devopsproduit"
+        registry = "montassarslama/devopsfin"
         registryCredential = 'docker'
         dockerImage = ''
     }
@@ -124,7 +124,7 @@ pipeline {
 
      stage("Email"){
                   steps{
-                      emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'devopsmonta2022@gmail.com'
+                      emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'montassar.slama@esprit.tn'
                   }
               }
        }
