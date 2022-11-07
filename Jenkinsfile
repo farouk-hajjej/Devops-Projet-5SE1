@@ -118,7 +118,7 @@ pipeline {
                                mail to: "devopsmonta2022@gmail.com",
                                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
                                from: 'devopsmonta2022@gmail.com',
-                               subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                               subject: "Jenkins Build ${currentBuild.fullDisplayName}: Job ${env.JOB_NAME}"
                            }
 
                            failure{
