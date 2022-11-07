@@ -45,7 +45,7 @@ pipeline{
                 }
             }
         }
-	stage ('Upload Jar To Nexus'){
+	/*stage ('Upload Jar To Nexus'){
 	   steps {
 	   nexusArtifactUploader artifacts: [
 	   [artifactId: 'achat',
@@ -61,7 +61,7 @@ pipeline{
 	   repository: 'http://192.168.43.108:8081/repository/backend_aziz/', 
 	   version: '1.0'
 	         }
-	   }
+	   }*/
 	   stage('Build docker image'){
             steps{
                 script{
