@@ -4,6 +4,7 @@ import com.esprit.examen.dto.ActiviteDTO;
 import com.esprit.examen.entities.SecteurActivite;
 import com.esprit.examen.services.ISecteurActiviteService;
 import io.swagger.annotations.Api;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
@@ -15,7 +16,6 @@ import java.util.List;
 @RequestMapping("/secteurActivite")
 public class SecteurActiviteController {
 
-	@Autowired
 	private ModelMapper modelMapper;
 
 	@Autowired

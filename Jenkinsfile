@@ -23,7 +23,7 @@ stages {
 
         stage('MVN CLEAN'){
                  steps{
-                     sh  'mvn clean install'
+                     sh  'mvn clean install -U'
                  }
                            }
         stage('MVN COMPILE'){
@@ -38,7 +38,15 @@ stages {
                                   }
               stage("nexus deploy"){
                                    steps {
-                                      sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.19:8081/repository/maven-releases -Dfile=target/tpAchatProject-1.0.jar'
+                                      sh 'mvn deploy:deploy-file
+                                          -DgroupId=com.esprit.examen
+                                          -DartifactId=tpAchatProject
+                                          -Dversion=1.0
+                                          -DgeneratePom=true
+                                          -Dpackaging=jar
+                                          -DrepositoryId=deploymentRepo
+                                          -Durl=http://192.168.1.19:8081/repository/maven-releases
+                                          -Dfile=target/tpAchatProject-1.0.jar'
                                            }
                                    }
              stage('MVN SONARQUBE'){
