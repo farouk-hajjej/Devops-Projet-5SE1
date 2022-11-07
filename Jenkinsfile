@@ -41,11 +41,11 @@ stages {
                                 sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=youssef123'
                          }
                    }
-              stage("nexus deploy"){
+              /*stage("nexus deploy"){
                                    steps {
                                       sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.19:8081/repository/maven-releases -Dfile=target/tpAchatProject-2.0.jar'
                                            }
-                                   }
+                                   }*/
 
 
 
