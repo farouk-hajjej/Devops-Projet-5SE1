@@ -1,0 +1,27 @@
+version: '3'
+services:
+  database:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: tpachato   
+    ports:
+      - 3306:3306
+    networks:
+     - AppNet
+     
+  spring-boot:
+    image: azizfridhi/achat
+    container_name: spring
+    ports:
+      - 8082:8082
+    depends_on:
+      - database
+    networks:
+      - AppNet 
+    restart: on-failure     
+  
+  
+networks:
+  AppNet:
