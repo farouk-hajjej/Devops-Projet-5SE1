@@ -8,43 +8,46 @@ environment {
 
 agent any
 stages {
-    stage('Checkout GIT') {
+    stage('Get Code from GitHub') {
         steps {
             echo 'Pulling .....';
             git branch : 'farouk-back',
             url : 'https://github.com/farouk-hajjej/Devops-Projet-5SE1.git'
           //credentialsId : ' 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 ' ;
-        }
-        }
-          stage('Date') {
-                      steps {
-                           script{
-                           def date = new Date()
-                           sdf = new SimpleDateFormat("MM/dd/yyyy")
-                           println(sdf.format(date))
-                                   }
+               }
+    }
+    stage('Date') {
+                          steps {
+                               script{
+                               def date = new Date()
+                               sdf = new SimpleDateFormat("MM/dd/yyyy")
+                               println(sdf.format(date))
+                                       }
 
-                             }
-         }
+                                 }
+    }
+    stage('MVN CLEAN'){
+                         steps{
+                             sh  'mvn clean '
+                         }
+    }
 
-          stage('MVN CLEAN'){
-                 steps{
-                     sh  'mvn clean '
-                 }
-             }
-        stage('MVN COMPILE'){
+    stage('MVN build'){
             steps{
                 sh  'mvn compile'
             }
-        }
-             stage('MVN PACKAGE'){
+     }
+
+
+
+    stage('MVN PACKAGE'){
                   steps{
                         sh  'mvn package'
-                          }
-                          }
-              stage("nexus deploy"){
+                   }
+    }
+              stage("Nexus deploy"){
                      steps {
-                        sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0.1 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.190:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
+                        sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.191:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
                              }
                               }
 
