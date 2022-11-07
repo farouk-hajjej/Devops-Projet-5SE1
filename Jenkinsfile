@@ -141,7 +141,7 @@ stages {
                             from: 'hajjej.farouk6@gmail.com',
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                         }
-                    }
+                 }
 
 
 
