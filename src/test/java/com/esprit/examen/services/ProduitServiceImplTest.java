@@ -18,7 +18,7 @@ public class ProduitServiceImplTest {
     IProduitService produitService;
 
     @Test
-    @Order(4)
+    @Order(2)
     public void testRetrieveAllProduits() {
         List<Produit> listProduits = produitService.retrieveAllProduits();
         Assertions.assertEquals(0, listProduits.size());
@@ -51,7 +51,7 @@ public class ProduitServiceImplTest {
     }
 
     @Test
-    @Order(2)
+    @Order(4)
     public void testDeleteProduit() {
         Produit p = new Produit((long)4,"produit test","pc",60);
         Produit savedProduit= produitService.addProduit(p);

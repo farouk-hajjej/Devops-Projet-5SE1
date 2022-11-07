@@ -36,7 +36,7 @@ class ProduitServiceImplMockIT {
 
 
     @Test
-    void testRetrieveProsuitByid() {
+    void testRetrieveProduitByid() {
         when(produitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(produit));
         Produit produitp = produitServiceImp.retrieveProduit((long)1);
         System.out.println(produitp);
@@ -65,7 +65,7 @@ class ProduitServiceImplMockIT {
     @Test
     void testDeleteObject() {
         Produit produite = new Produit();
-        produite.setLibelleProduit("new test");
+        produite.setLibelleProduit("produit1");
         produite.setIdProduit(1L);
         when(produitRepository.findById(produite.getIdProduit())).thenReturn(Optional.of(produite));
         Produit produitp = produitServiceImp.retrieveProduit(1L);

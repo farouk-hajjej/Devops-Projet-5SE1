@@ -103,10 +103,44 @@ pipeline {
             }
         }
 
-       stage("Email"){
+    /*  stage("Email"){
                   steps{
                       emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'montassar.slama@esprit.tn'
                   }
               }
        }
+       }*/
+
+        }
+             post {
+
+                           success {
+                               mail to: "devopsmonta2022@gmail.com",
+                               body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
+                               from: 'devopsmonta2022@gmail.com',
+                               subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                           }
+
+                           failure{
+                               mail to: "devopsmonta2022@gmail.com",
+                               subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                               from: 'devopsmonta2022@gmail.com',
+                               body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                           }
+
+                           changed{
+                               mail to: "devopsmonta2022@gmail.com",
+                               subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                               from: 'devopsmonta2022@gmail.com',
+                               body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                           }
+                       }
+
+
+
+
+
+
+
+
        }
