@@ -32,7 +32,7 @@ stages {
                          }
     }
 
-    stage('MVN build'){
+    stage(' MVN COMPILE'){
             steps{
                 sh  'mvn compile'
             }
