@@ -123,14 +123,10 @@ pipeline {
             }
         }
 
-     post {
-        always {
-           mail to: 'montassar.slama@esprit.tn',
-              subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
-              body: "${env.BUILD_URL} has result ${currentBuild.result}"
-        }
-      }
-
-
+      stage("Email"){
+                steps{
+                    emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'montassar.slama@esprit.tn'
+                }
             }
-}
+     }
+     }
