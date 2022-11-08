@@ -84,7 +84,7 @@ stages {
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }*/
-                   /*   stage('Building our image') {
+          stage('Building our image') {
                               steps {
                                   script {
                                      dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -99,26 +99,26 @@ stages {
                                            }
                                                        }*/
 
-                           /* stage('Deploy our image') {
-                                      steps {
-                                            script {
-                                             docker.withRegistry( '', registryCredential ) {
-                                                    dockerImage.push()
-                                                      }
-                                              }
-                                                               }
-                                                               }
+        stage('Deploy our image') {
+                      steps {
+                           script {
+                              docker.withRegistry( '', registryCredential ) {
+                                        dockerImage.push()
+                                           }
+                                          }
+                                      }
+                          }
                  stage('Cleaning up') {
                            steps {
                                  sh "docker rmi $registry:$BUILD_NUMBER"
                                    }
                                 }
 
- stage('DOCKER COMPOSE') {
-      steps {
+       stage('DOCKER COMPOSE') {
+          steps {
             sh 'docker-compose up -d --build'
         }
-    }*/
+    }
     }
       post {
 
