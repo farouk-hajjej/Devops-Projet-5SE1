@@ -124,7 +124,7 @@ pipeline {
 
      stage("Email"){
                   steps{
-                      emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'montassar.slama@esprit.tn'
+                      emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'montassarslama6@gmail.com'
                   }
               }
        }
