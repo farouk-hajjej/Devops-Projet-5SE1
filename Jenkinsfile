@@ -30,12 +30,13 @@ pipeline {
         stage('Date') {
              steps {
                 script{
-                     def date = new Date()
-                     sdf = new SimpleDateFormat("MM/dd/yyyy")
-                     println(sdf.format(date))
-                             }
-                             }
-                             }
+                        Date date = new Date()
+                        String dateString = date.format("dd-MM-yyyy")
+                       println "Date : " + dateString
+                       }
+               mail body: 'Pipeline has been executed successfully', to: "montassar.slama@esprit.tn", subject: 'pipeline executed'
+         }
+         }
 
 
         stage('MVN CLEAN  stage') {
@@ -75,7 +76,7 @@ pipeline {
         stage('SonarQube stage') {
 
             steps {
-            sh'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -e'
+            sh'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -DskipTests'
 
             }
         }
@@ -91,7 +92,7 @@ pipeline {
            stage('Nexus stage') {
 
             steps {
-           sh 'mvn deploy -e'
+           sh 'mvn deploy -DskipTests'
 
             }
         }
@@ -122,11 +123,13 @@ pipeline {
             }
         }
 
-     stage("Email"){
-                  steps{
-                      emailext attachLog: true, body: "${env.BUILD_URL} has result ${currentBuild.result}", compressLog: true, subject: "Status of pipeline: ${currentBuild.fullDisplayName}", to: 'montassarslama6@gmail.com'
-                  }
-              }
-       }
-       }
+     post {
+        always {
+           mail to: 'montassar.slama@esprit.tn',
+              subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+              body: "${env.BUILD_URL} has result ${currentBuild.result}"
+        }
+      }
 
+
+            }
