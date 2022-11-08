@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 import com.esprit.examen.entities.SecteurActivite;
 import com.esprit.examen.repositories.SecteurActiviteRepository;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes =SecteurActiviteMockitoTest.class)
 @ExtendWith(MockitoExtension.class)
 class SecteurActiviteMockitoTest {
-
+/*
     @Mock
     SecteurActiviteRepository secteurActiviteRepository;
     @InjectMocks
@@ -66,6 +66,6 @@ class SecteurActiviteMockitoTest {
         SecteurActivite secteurActivite1 = secteurActiviteService.retrieveSecteurActivite(1L);
         secteurActiviteService.deleteSecteurActivite(secteurActivite1.getIdSecteurActivite());
         verify(secteurActiviteRepository).deleteById(secteurActivite1.getIdSecteurActivite());
-    }
+    }*/
 
-}
+

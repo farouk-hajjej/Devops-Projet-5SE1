@@ -1,7 +1,8 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 import com.esprit.examen.entities.Fournisseur;
 import com.esprit.examen.entities.SecteurActivite;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 class SecteurActiviteServiceImpl {
     @Autowired
     ISecteurActiviteService secteurActiviteService;
@@ -46,4 +48,4 @@ class SecteurActiviteServiceImpl {
         secteurActiviteService.deleteSecteurActivite(savedSecteur.getIdSecteurActivite());
         assertNull(secteurActiviteService.retrieveSecteurActivite(savedSecteur.getIdSecteurActivite()));
     }
-}
+}*/
