@@ -53,13 +53,6 @@ public class SecteurActiviteController {
 	}
 
 
-	@PutMapping("/modify-secteurActivite")
-	@ResponseBody
-	public SecteurActivite modifySecteurActivite(@RequestBody ActiviteDTO a) {
-		SecteurActivite persistentActivite = modelMapper.map(a,SecteurActivite.class);
-
-		return secteurActiviteService.updateSecteurActivite(persistentActivite);
-	}
 
 	
 }

@@ -12,7 +12,6 @@ public interface ISecteurActiviteService {
 
 	void deleteSecteurActivite(Long id);
 
-	SecteurActivite updateSecteurActivite(SecteurActivite sa);
 
 	SecteurActivite retrieveSecteurActivite(Long id);
 
