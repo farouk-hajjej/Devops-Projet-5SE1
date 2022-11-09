@@ -1,10 +1,10 @@
 import java.text.SimpleDateFormat
 pipeline {
-environment {
+/**environment {
         registry = "faroukhajjej1/projet-devops"
         registryCredential = 'dckr_pat_I63lpP-WDrsX4CZP1vDIG6NJoKo'
         dockerImage = ''
-    }
+    }**/
 
 agent any
 stages {
@@ -45,7 +45,7 @@ stages {
                         sh  'mvn package'
                    }
     }
-              stage("Nexus deploy"){
+            /*  stage("Nexus deploy"){
                      steps {
                         sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.195:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
                              }
@@ -84,7 +84,7 @@ stages {
                                                                             sh 'docker push faroukhajjej1/projet-devops:156 '
                                                                    }
                                                              }*/
-          stage('Building our image') {
+       /*   stage('Building our image') {
                               steps {
                                   script {
                                      dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -99,7 +99,7 @@ stages {
                                            }
                                                        }*/
 
-        stage('Deploy our image') {
+     /*   stage('Deploy our image') {
                       steps {
                            script {
                               docker.withRegistry( '', registryCredential ) {
@@ -117,10 +117,10 @@ stages {
        stage('DOCKER COMPOSE') {
           steps {
             sh 'docker-compose up -d --build'
-        }
+        }*/
     }
     }
-      post {
+     /* post {
 
                     success {
                         mail to: "hajjej.farouk6@gmail.com",
@@ -142,7 +142,7 @@ stages {
                         from: 'hajjej.farouk6@gmail.com',
                         body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                     }
-                }
+                }*/
 
 
 
