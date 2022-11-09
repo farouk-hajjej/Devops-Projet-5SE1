@@ -61,11 +61,12 @@ stages {
                                      }
                                }
     stage('Building our image') {
-                                                 steps {
-
-                                                       sh 'docker build -t faroukhajjej1/projet-devops'
-                                                   }
+                                  steps {
+                                      script {
+                                         dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                                }
+                                          }
+                                          }
     stage('Deploy our image') {
                           steps {
                                script {
