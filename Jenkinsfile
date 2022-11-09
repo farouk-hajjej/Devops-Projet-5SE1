@@ -1,10 +1,10 @@
 import java.text.SimpleDateFormat
 pipeline {
-/**environment {
+environment {
         registry = "faroukhajjej1/projet-devops"
         registryCredential = 'dckr_pat_I63lpP-WDrsX4CZP1vDIG6NJoKo'
         dockerImage = ''
-    }**/
+    }
 
 agent any
 stages {
@@ -55,11 +55,31 @@ stages {
                   sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
                }
          }
-     stage("Test JUnit /Mockito"){
+    stage("Test JUnit /Mockito"){
                                      steps {
                                                  sh 'mvn test'
                                      }
                                }
+    stage('Building our image') {
+                                                 steps {
+
+                                                       sh 'docker build -t faroukhajjej1/projet-devops'
+                                                   }
+                                               }
+    stage('Deploy our image') {
+                          steps {
+                               script {
+                                  docker.withRegistry( '', registryCredential ) {
+                                            dockerImage.push()
+                                               }
+                                              }
+                                          }
+                              }
+                     stage('Cleaning up') {
+                               steps {
+                                     sh "docker rmi $registry:$BUILD_NUMBER"
+                                       }
+                                    }
             /*  stage("Nexus deploy"){
                      steps {
                         sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.195:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
