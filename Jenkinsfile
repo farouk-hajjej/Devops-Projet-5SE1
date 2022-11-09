@@ -45,6 +45,13 @@ stages {
                         sh  'mvn package'
                    }
     }
+      stage('Nexus stage') {
+
+                steps {
+               sh 'mvn deploy '
+
+                }
+            }
 
     stage('MVN SONARQUBE'){
                steps{
