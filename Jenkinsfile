@@ -65,7 +65,9 @@ stages {
                                       script {
                                          dockerImage = docker.build registry + ":$BUILD_NUMBER"
                                                }
-                                    }
+
+                                   }
+                                 }
 stage('Docker login') {
                                      steps {
                                        sh 'echo "login Docker ...."'
