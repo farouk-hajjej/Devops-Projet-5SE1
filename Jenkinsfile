@@ -74,15 +74,12 @@ stage('Docker login') {
                                        sh 'docker login -u faroukhajjej1 -p Fh97213990'
                                            }
                        }
-    stage('Deploy our image') {
-                          steps {
-                               script {
-                                  docker.withRegistry( '', registryCredential ) {
-                                            dockerImage.push()
-                                               }
-                                              }
-                                          }
-                              }
+     stage('Docker push') {
+                   steps {
+                            sh 'echo "Docker is pushing ...."'
+                            sh 'docker push faroukhajjej1/projet-devops'
+                   }
+             }
                      stage('Cleaning up') {
                                steps {
                                      sh "docker rmi $registry:$BUILD_NUMBER"
