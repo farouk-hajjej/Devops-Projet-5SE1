@@ -85,6 +85,10 @@ stage('Docker login') {
                                      sh "docker rmi $registry:$BUILD_NUMBER"
                                        }
                                     }
+               stage('DOCKER COMPOSE') {
+                   steps {
+                      sh 'docker-compose up -d --build'
+                         }
             /*  stage("Nexus deploy"){
                      steps {
                         sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=2.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.195:8081/repository/maven-releases/ -Dfile=target/docker-spring-boot.jar'
@@ -160,7 +164,7 @@ stage('Docker login') {
         }*/
     }
     }
-     /* post {
+      post {
 
                     success {
                         mail to: "hajjej.farouk6@gmail.com",
@@ -182,7 +186,8 @@ stage('Docker login') {
                         from: 'hajjej.farouk6@gmail.com',
                         body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                     }
-                }*/
+                }
+ }
 
 
 
