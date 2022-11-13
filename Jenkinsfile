@@ -47,7 +47,7 @@ stages {
     }
      stage("Nexus deploy"){
                            steps {
-                              sh 'mvn deploy'
+                              sh 'mvn deploy -e'
                                    }
                                     }
     stage('MVN SONARQUBE'){
