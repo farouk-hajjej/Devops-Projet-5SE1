@@ -28,13 +28,13 @@ stages {
     }
     stage('MVN CLEAN'){
                          steps{
-                             sh  'mvn clean '
+                             sh  'mvn clean -e '
                          }
     }
 
     stage(' MVN COMPILE'){
             steps{
-                sh  'mvn compile'
+                sh  'mvn compile -e'
             }
      }
 
@@ -42,7 +42,7 @@ stages {
 
     stage('MVN PACKAGE'){
                   steps{
-                        sh  'mvn package'
+                        sh  'mvn package -e'
                    }
     }
      stage("Nexus deploy"){
